@@ -17,9 +17,9 @@ public class ConfirmationService {
 
     public SimpleMailMessage prepareConfirmation(Order order) {
         SimpleMailMessage mail = new SimpleMailMessage();
-        //mail.setTo(order.getCustomer().getEmailAddress());
+        mail.setTo(order.getCustomer().getEmailAddress());
         String message = order.getCart().cartToString();
-        mail.setTo("skorulski.hubert@gmail.com");
+        //mail.setTo("skorulski.hubert@gmail.com");
         mail.setSubject("Potwierdzenie złożenia zamówienia nr: " + order.getId());
         mail.setText(message);
         return mail;
