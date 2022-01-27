@@ -1,0 +1,45 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'com.vaadin' version '0.14.6.0'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('vaadinVersion', "14.8.1")
+}
+
+dependencies {
+	implementation 'com.vaadin:vaadin-spring-boot-starter'
+	implementation 'junit:junit:4.13.1'
+	compileOnly 'org.projectlombok:lombok:1.18.18'
+	annotationProcessor('org.projectlombok:lombok:1.18.18')
+	testCompileOnly'org.projectlombok:lombok:1.18.18'
+	testAnnotationProcessor('org.projectlombok:lombok:1.18.18')
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly('com.h2database:h2')
+	runtimeOnly ('mysql:mysql-connector-java')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
