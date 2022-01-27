@@ -1,4 +1,4 @@
-package com.finalproject.data;
+package com.finalproject.service;
 
 import com.finalproject.domain.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,9 @@ public class ConfirmationService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private CartDbService cartDbService;
 
     public SimpleMailMessage prepareConfirmation(Order order) {
         SimpleMailMessage mail = new SimpleMailMessage();
@@ -25,4 +28,14 @@ public class ConfirmationService {
     public void sendConfirmation(Order order) {
         javaMailSender.send(prepareConfirmation(order));
     }
+
+    public void sendNumberOfOrders() {
+        int orders = cartDbService.getAllCarts().size();
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo("skorulski.hubert@gmail.com");
+        mail.setSubject("All orders");
+        mail.setText("Liczba zamówień w bazie danych: " + orders);
+        javaMailSender.send(mail);
+    }
+
 }

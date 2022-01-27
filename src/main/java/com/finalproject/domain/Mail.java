@@ -1,14 +1,15 @@
 
-package com.finalproject.data;
+package com.finalproject.domain;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.mail.SimpleMailMessage;
 
 
 @Getter
 @AllArgsConstructor
-public class Mail {
+public class Mail extends SimpleMailMessage {
 
     private final String mailTo;
     private final String subject;

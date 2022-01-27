@@ -1,6 +1,6 @@
 package com.finalproject.frontend;
 
-import com.finalproject.data.Menu;
+import com.finalproject.domain.Menu;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;

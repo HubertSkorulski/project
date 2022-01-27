@@ -1,6 +1,6 @@
 package com.finalproject.frontend;
 
-import com.finalproject.data.CartRow;
+import com.finalproject.domain.CartRow;
 import com.finalproject.domain.Cart;
 import com.finalproject.service.CartDbService;
 import com.vaadin.flow.component.Unit;

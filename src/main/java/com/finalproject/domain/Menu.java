@@ -1,23 +1,21 @@
-package com.finalproject.data;
+package com.finalproject.domain;
 
 import com.finalproject.dao.DishRepository;
 import com.finalproject.dao.GroupRepository;
-import com.finalproject.domain.Dish;
-import com.finalproject.domain.Group;
 import com.finalproject.service.DishDbService;
 import com.finalproject.service.GroupDbService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Menu {
 
-    private GroupDbService groupDbService;
-    private DishDbService dishDbService;
-    private DishRepository dishRepository;
-    private GroupRepository groupRepository;
+    private final GroupDbService groupDbService;
+    private final DishDbService dishDbService;
+    private final GroupRepository groupRepository;
 
     public void prepareDishes() {
         Group group = new Group("Test group");

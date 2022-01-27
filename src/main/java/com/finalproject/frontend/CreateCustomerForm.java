@@ -1,6 +1,6 @@
 package com.finalproject.frontend;
 
-import com.finalproject.data.ConfirmationService;
+import com.finalproject.service.ConfirmationService;
 import com.finalproject.domain.Cart;
 import com.finalproject.domain.Customer;
 import com.finalproject.domain.Order;

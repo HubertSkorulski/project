@@ -1,6 +1,6 @@
 package com.finalproject.service;
 
-import com.finalproject.data.Mail;
+import com.finalproject.domain.Mail;
 
 public class EmailServiceTestSuite {
 

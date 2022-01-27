@@ -1,10 +1,8 @@
 package com.finalproject.frontend;
 
-import com.finalproject.data.ConfirmationService;
-import com.finalproject.data.Menu;
+import com.finalproject.service.ConfirmationService;
 import com.finalproject.domain.Cart;
 import com.finalproject.service.*;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;

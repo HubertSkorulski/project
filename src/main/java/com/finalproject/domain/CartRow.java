@@ -1,4 +1,4 @@
-package com.finalproject.data;
+package com.finalproject.domain;
 
 import com.finalproject.domain.Dish;
 import lombok.AllArgsConstructor;

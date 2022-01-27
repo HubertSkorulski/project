@@ -1,7 +1,5 @@
 package com.finalproject.domain;
 
-import com.finalproject.data.CartRow;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

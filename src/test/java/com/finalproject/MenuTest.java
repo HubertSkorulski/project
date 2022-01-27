@@ -1,6 +1,6 @@
 package com.finalproject;
 
-import com.finalproject.data.Menu;
+import com.finalproject.domain.Menu;
 import com.finalproject.service.CartDbService;
 import com.finalproject.service.DishDbService;
 import com.finalproject.service.GroupDbService;

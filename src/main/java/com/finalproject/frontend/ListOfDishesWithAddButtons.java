@@ -30,7 +30,6 @@ public class ListOfDishesWithAddButtons extends VerticalLayout {
     public ListOfDishesWithAddButtons(DishDbService dishDbService, CartDbService cartDbService) {
         this.dishDbService = dishDbService;
         this.cartDbService = cartDbService;
-
     }
 
     public VerticalLayout prepareLayout(CartSummary cartSummary) {
