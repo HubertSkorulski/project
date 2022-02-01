@@ -28,6 +28,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	runtimeOnly('com.h2database:h2')
 	runtimeOnly ('mysql:mysql-connector-java')
+	runtimeOnly 'org.postgresql:postgresql'
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
