@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.2'
+	id 'org.springframework.boot' version '2.4.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'com.vaadin' version '0.14.6.0'
 	id 'java'
@@ -38,11 +38,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 
 
-	runtimeOnly('com.h2database:h2')
+
 	//runtimeOnly ('mysql:mysql-connector-java')
 	runtimeOnly 'org.postgresql:postgresql'
 
 	implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+
+	runtimeOnly('com.h2database:h2')
 }
 
 dependencyManagement {
