@@ -1,5 +1,6 @@
 package com.finalproject.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "CARTS")
+@Getter
 public class Cart {
 
     @Id
@@ -34,31 +36,17 @@ public class Cart {
         this.order = order;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public List<Dish> getChosenDishes() {
-        return chosenDishes;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
     public List<CartRow> prepareCartDisplay() {
         List<Dish> singularDishes = findDistinctDishes();
         List<CartRow> cartRows = new ArrayList<>();
         for (Dish dish : singularDishes) {
-            int quantity = (int)chosenDishes.stream()
-                    .filter(e -> e.getName().equals(dish.getName()))
-                    .count();
+            int quantity = countServings(dish);
             cartRows.add(new CartRow(dish,quantity));
         }
         return cartRows;
     }
 
-    public int countIndividualDishes(Dish dish) {
+    public int countServings(Dish dish) {
         return (int)chosenDishes.stream()
                 .filter(e -> e.getName().equals(dish.getName()))
                 .count();
@@ -76,7 +64,6 @@ public class Cart {
 
     public double totalCost() {
         List<CartRow> cartRows = prepareCartDisplay();
-
         return cartRows.stream()
                 .map(CartRow::getPrice)
                 .reduce((double) 0,Double::sum);
@@ -92,4 +79,17 @@ public class Cart {
         return cartInString += "Całkowity koszt: " + totalCost();
     }
 
+    public void removeDish(Dish dish) {
+        while (getChosenDishes().contains(dish)) {
+            getChosenDishes().remove(dish);
+            dish.getCarts().remove(this);
+        }
+    }
+
+    public void addDish(Dish dish, int quantity) {
+        for (int i=0; i < quantity; i++) {
+            getChosenDishes().add(dish);
+            dish.getCarts().add(this);
+        }
+    }
 }

@@ -10,6 +10,7 @@ import com.finalproject.exception.CustomerNotFoundException;
 import com.finalproject.exception.OrderNotFoundException;
 import com.finalproject.mapper.OrderMapper;
 import com.finalproject.service.CartDbService;
+import com.finalproject.service.ConfirmationService;
 import com.finalproject.service.CustomerDbService;
 import com.finalproject.service.OrderDbService;
 import lombok.AllArgsConstructor;
@@ -27,19 +28,24 @@ public class OrderController {
     private CustomerDbService customerDbService;
     private OrderDbService orderDbService;
     private OrderMapper orderMapper;
+    private ConfirmationService confirmationService;
 
     @PostMapping
     public OrderDto createOrder(@RequestParam Long cartId, @RequestParam Long customerId) throws CartNotFoundException, CustomerNotFoundException {
         Cart cart = cartDbService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         Customer customer = customerDbService.getCustomer(customerId).orElseThrow(CustomerNotFoundException::new);
         Order order = new Order(cart,customer);
+
         cart.setOrder(order);
         customer.getOrders().add(order);
+
         orderDbService.save(order);
         cartDbService.save(cart);
         customerDbService.save(customer);
+
         return orderMapper.mapToOrderDto(order);
     }
+
 
     @GetMapping
     public OrderDto getOrder(@RequestParam Long orderId) throws OrderNotFoundException {

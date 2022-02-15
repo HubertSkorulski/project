@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class ScheduledTasks {
     private final ConfirmationService confirmationService;
 
-    @Scheduled(fixedDelay = 30000)
+    //@Scheduled(fixedDelay = 30000)
     public void sendAllCarts() {
         confirmationService.sendNumberOfOrders();
     }

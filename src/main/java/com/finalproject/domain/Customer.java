@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "CUSTOMERS")
+@Getter
+@Setter
 public class Customer {
     @Id
     @GeneratedValue
@@ -41,36 +43,6 @@ public class Customer {
         this.emailAddress = emailAddress;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
 
 }

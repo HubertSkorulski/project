@@ -30,7 +30,7 @@ public class DishController {
     }
 
     @PostMapping
-    public DishDto createDish(@RequestParam String name, @RequestParam Double price, @RequestParam Long groupId) throws GroupNotFoundException {
+    public DishDto createDish(@RequestParam java.lang.String name, @RequestParam Double price, @RequestParam Long groupId) throws GroupNotFoundException {
         Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
         Dish dish = new Dish(name,price, group);
         dishDbService.save(dish);
@@ -39,7 +39,7 @@ public class DishController {
 
 
     @PutMapping
-    public DishDto updateDish(@RequestParam Long dishId, @RequestParam String name, @RequestParam Double price) throws DishNotFoundException {
+    public DishDto updateDish(@RequestParam Long dishId, @RequestParam java.lang.String name, @RequestParam Double price) throws DishNotFoundException {
         Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
         dish.setName(name);
         dish.setPrice(price);

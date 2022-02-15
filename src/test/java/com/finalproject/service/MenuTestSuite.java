@@ -1,4 +1,4 @@
-package com.finalproject;
+package com.finalproject.service;
 
 import com.finalproject.domain.Menu;
 import com.finalproject.service.CartDbService;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class MenuTest {
+public class MenuTestSuite {
 
     @Autowired
     private Menu menu;

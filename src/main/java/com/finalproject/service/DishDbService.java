@@ -18,7 +18,7 @@ public class DishDbService {
         return dishRepository.findById(dishId);
     }
 
-    public Dish getDishByName(String name) {
+    public Optional<Dish>  getDishByName(String name) {
         return dishRepository.findByName(name);
     }
 

@@ -1,4 +1,4 @@
-package com.finalproject;
+package com.finalproject.domain;
 
 import com.finalproject.dao.DishRepository;
 import com.finalproject.dao.GroupRepository;

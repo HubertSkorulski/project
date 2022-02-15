@@ -24,7 +24,8 @@ public class DishMapper {
         DishDto dishDto = new DishDto(
                 dish.getId(),
                 dish.getName(),
-                dish.getPrice()
+                dish.getPrice(),
+                dish.getGroup().getId()
         );
         return dishDto;
     }

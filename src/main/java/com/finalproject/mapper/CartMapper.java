@@ -5,17 +5,25 @@ import com.finalproject.dto.CartDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CartMapper {
 
-
-    private DishMapper dishMapper;
-
     public CartDto mapToCartDto(Cart cart) {
-        CartDto cartDto = new CartDto(
+        return new CartDto(
                 cart.getId()
         );
-        return cartDto;
+    }
+
+    public List<CartDto> mapToCartDtoList(List<Cart> carts) {
+        List<CartDto> cartDtos = new ArrayList<CartDto>();
+
+        for (Cart cart : carts) {
+            cartDtos.add(mapToCartDto(cart));
+        }
+        return cartDtos;
     }
 }

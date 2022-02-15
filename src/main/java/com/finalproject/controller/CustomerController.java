@@ -25,7 +25,7 @@ public class CustomerController {
         return customerMapper.mapToCustomerDto(customer);
     }
 
-    @PostMapping("createCustomer")
+    @PostMapping
     public CustomerDto createCustomer(@RequestParam String name, @RequestParam String surname, @RequestParam String emailAddress) {
         Customer customer = new Customer(name, surname, emailAddress);
         customerDbService.save(customer);

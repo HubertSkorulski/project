@@ -1,4 +1,4 @@
-package com.finalproject;
+package com.finalproject.domain;
 
 import com.finalproject.dao.CustomerRepository;
 import com.finalproject.domain.Customer;

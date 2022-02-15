@@ -1,12 +1,14 @@
 package com.finalproject.domain;
 
-import com.finalproject.dao.DishRepository;
 import com.finalproject.dao.GroupRepository;
+import com.finalproject.dto.DishDto;
+import com.finalproject.mapper.DishMapper;
 import com.finalproject.service.DishDbService;
 import com.finalproject.service.GroupDbService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -16,8 +18,9 @@ public class Menu {
     private final GroupDbService groupDbService;
     private final DishDbService dishDbService;
     private final GroupRepository groupRepository;
+    private final DishMapper dishMapper;
 
-    public void prepareDishes() {
+    public List<DishDto> prepareDishes() {
         Group group = new Group("Test group");
         Group group2 = new Group("Second test group");
         groupDbService.save(group);
@@ -67,5 +70,7 @@ public class Menu {
 
         groupDbService.save(groupFromDb);
         groupDbService.save(groupFromDb2);
+
+        return dishMapper.mapToDishDtoList(dishDbService.getAllDishes());
     }
 }
