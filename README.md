@@ -1,12 +1,10 @@
 Dzień dobry cześć, 
 
-Aplikacja działa tylko lokalnie. 
-Posiada wiele nie używanych controllerów nad czym zamierzam w przyszłości popracować. 
-Ogólnie rzecz biorąc to jestem nawet zadowolony z tego co zrobiłem, lecz wiem, że nie spełniam połowy wymagań. 
+Jest to backendowa część mojej aplikacji. Celem aplikacji jest pełna obsługa zamówień cateringów świątecznych. 
+W przyszłości planuję rozbudowę aplikacji o moduł do wczytywanie zamówień z pliku csv.
+Póki co aplikacja działa tylko lokalnie. 
 
-Zrozumienie działania Vaadima trochę mi zajęło. Jak już zrozumiałem to poszło sprawnie. 
-Aplikację zamierzam rozwijać samodzielnie dalej. 
-Proszę daj znać co warto poprawić, czy clean code jest w miarę zachowany.
+Część frontendowa znajduje pod tym linkiem: https://github.com/huubsoon/project-frontend
 
 Pozdrawiam,
 Hubert
