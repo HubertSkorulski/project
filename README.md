@@ -4,7 +4,7 @@ Jest to backendowa część mojej aplikacji. Celem aplikacji jest pełna obsług
 W przyszłości planuję rozbudowę aplikacji o moduł do wczytywanie zamówień z pliku csv.
 Póki co aplikacja działa tylko lokalnie. 
 
-Część frontendowa znajduje pod tym linkiem: https://github.com/huubsoon/project-frontend
+Część frontendowa znajduje pod tym linkiem: https://github.com/HubertSkorulski/project-frontend
 
 Pozdrawiam,
 Hubert
