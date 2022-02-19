@@ -4,9 +4,13 @@ import com.finalproject.dao.DishRepository;
 import com.finalproject.dao.GroupRepository;
 import com.finalproject.domain.Dish;
 import com.finalproject.domain.Group;
+import com.finalproject.service.DishDbService;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,10 +19,10 @@ public class DishEntityTestSuite {
 
     @Autowired
     private DishRepository dishRepository;
-
     @Autowired
     private GroupRepository groupRepository;
-
+    @Autowired
+    private DishDbService dishDbService;
 
     @Test
     public void createDishTest() {
@@ -91,7 +95,35 @@ public class DishEntityTestSuite {
         assertEquals(1,groupRepository.findAll().size());
         //CleanUp
         groupRepository.deleteAll();
+    }
 
+    @Test
+    public void dishesFromGroupTest() {
+        //Given
+        Group group = new Group("Test group");
+        Group secondGroup = new Group("New group");
+        Dish dish = new Dish("Test dish", 9.99,group);
+        Dish secondDish = new Dish("Second Dish", 1.22, secondGroup);
+        groupRepository.save(group);
+        groupRepository.save(secondGroup);
+        dishRepository.save(dish);
+        dishRepository.save(secondDish);
+        //When
+        List<Dish> dishesFromFirstGroup = dishDbService.getDishesFromGroup(group.getId());
+        List<Dish> dishesFromSecondGroup = dishDbService.getDishesFromGroup(secondGroup.getId());
+        //Then
+        assertEquals(1,dishesFromFirstGroup.size());
+        assertEquals(1,dishesFromSecondGroup.size());
+        assertEquals("Test dish", dishesFromFirstGroup.get(0).getName());
+        assertEquals(2,dishRepository.findAll().size());
+
+        //CleanUp
+        dish.setGroup(null);
+        secondDish.setGroup(null);
+        dishRepository.save(dish);
+        dishRepository.save(secondDish);
+        groupRepository.deleteAll();
+        dishRepository.deleteAll();
     }
 
 }
