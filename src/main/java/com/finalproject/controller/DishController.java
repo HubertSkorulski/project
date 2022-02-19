@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.finalproject.service.DishDbService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -61,6 +62,12 @@ public class DishController {
     public List<DishDto> getDishes() {
         List<Dish> dishes = dishDbService.getAllDishes();
         return dishMapper.mapToDishDtoList(dishes);
+    }
+
+    @GetMapping(value = "dishesInGroup/{groupId}")
+    public List<DishDto> getDishesWithGroup(@PathVariable Long groupId) {
+        List<Dish> dishesFromGroup = dishDbService.getDishesFromGroup(groupId);
+        return dishMapper.mapToDishDtoList(dishesFromGroup);
     }
 
 }

@@ -2,19 +2,19 @@ package com.finalproject.service;
 
 import com.finalproject.domain.Order;
 import com.finalproject.exception.OrderNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ConfirmationService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
 
-    @Autowired
-    private OrderDbService orderDbService;
+    private final JavaMailSender javaMailSender;
+    private final OrderDbService orderDbService;
 
     public SimpleMailMessage prepareConfirmation(Order order) {
         SimpleMailMessage mail = new SimpleMailMessage();
