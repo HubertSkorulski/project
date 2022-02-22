@@ -182,7 +182,7 @@ public class CartEntityTestSuite {
         Dish dish = new Dish("Test",12.22,group);
         cart.addDish(dish,5);
         //When
-        cart.removeDish(dish);
+        cart.removeDishQuantity(dish, cart.countServings(dish));
         //Then
         Assertions.assertEquals(0,cart.countServings(dish));
     }
@@ -202,4 +202,30 @@ public class CartEntityTestSuite {
         Assertions.assertEquals(11,price);
     }
 
+    @Test
+    void updateQuantityInCartAdding() {
+        //Given
+        Group group = new Group("test");
+        Cart cart = new Cart();
+        Dish dish = new Dish("test", 1.00,group);
+        cart.addDish(dish,10);
+        //When
+        cart.updateQuantityInCart(dish,12);
+        //Then
+        Assertions.assertEquals(12,cart.getChosenDishes().size());
+
+    }
+
+    @Test
+    void updateQuantityInCartRemoving() {
+        //Given
+        Group group = new Group("test");
+        Cart cart = new Cart();
+        Dish dish = new Dish("test", 1.00,group);
+        cart.addDish(dish,10);
+        //When
+        cart.updateQuantityInCart(dish,8);
+        //Then
+        Assertions.assertEquals(8,cart.getChosenDishes().size());
+    }
 }

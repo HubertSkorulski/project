@@ -8,18 +8,19 @@ import com.finalproject.mapper.GroupMapper;
 import com.finalproject.service.DishDbService;
 import com.finalproject.service.GroupDbService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("v1/group")
 public class GroupController {
 
-    private GroupDbService groupDbService;
-    private GroupMapper groupMapper;
-    private DishDbService dishDbService;
+    private final GroupDbService groupDbService;
+    private final GroupMapper groupMapper;
+    private final DishDbService dishDbService;
 
     @PostMapping
     public GroupDto createGroup(@RequestParam String groupName) {
@@ -28,14 +29,14 @@ public class GroupController {
         return groupMapper.mapToGroupDto(group);
     }
 
-    @GetMapping(value = "getGroups")
+    @GetMapping()
     public List<GroupDto> getAllGroups() {
         List<Group> groups = groupDbService.getAllGroups();
         return groupMapper.mapToGroupDtoList(groups);
     }
 
-    @GetMapping
-    public GroupDto getGroup(@RequestParam Long groupId) throws GroupNotFoundException {
+    @GetMapping("/{groupId}")
+    public GroupDto getGroup(@PathVariable Long groupId) throws GroupNotFoundException {
         Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
         return groupMapper.mapToGroupDto(group);
     }

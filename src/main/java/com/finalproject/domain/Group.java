@@ -17,7 +17,7 @@ public class Group {
     @Column(name = "GROUP_ID")
     private Long id;
 
-    @Column(name = "GROUP_NAME")
+    @Column(name = "GROUP_NAME", unique = true)
     private String groupName;
 
     @OneToMany(

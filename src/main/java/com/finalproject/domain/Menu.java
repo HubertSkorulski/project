@@ -20,7 +20,7 @@ public class Menu {
     private final GroupRepository groupRepository;
     private final DishMapper dishMapper;
 
-    public List<DishDto> prepareDishes() {
+    public void prepareDishes() {
         Group group = new Group("Test group");
         Group group2 = new Group("Second test group");
         groupDbService.save(group);
@@ -70,7 +70,5 @@ public class Menu {
 
         groupDbService.save(groupFromDb);
         groupDbService.save(groupFromDb2);
-
-        return dishMapper.mapToDishDtoList(dishDbService.getAllDishes());
     }
 }

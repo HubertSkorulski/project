@@ -13,6 +13,7 @@ import java.util.List;
 public class GroupMapper {
 
     public GroupDto mapToGroupDto(Group group) {
+
         return new GroupDto(group.getId(), group.getGroupName());
     }
 

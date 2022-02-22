@@ -69,6 +69,13 @@ public class Cart {
                 .reduce((double) 0,Double::sum);
     }
 
+    public void removeDishQuantity(Dish dish, int quantity) {
+        for (int i=0; i < quantity; i++) {
+            getChosenDishes().remove(dish);
+            dish.getCarts().remove(this);
+        }
+    }
+
     public String cartToString() {
         List<CartRow> cartRows = prepareCartDisplay();
         String cartInString = "";
@@ -79,17 +86,19 @@ public class Cart {
         return cartInString += "Całkowity koszt: " + totalCost();
     }
 
-    public void removeDish(Dish dish) {
-        while (getChosenDishes().contains(dish)) {
-            getChosenDishes().remove(dish);
-            dish.getCarts().remove(this);
-        }
-    }
-
     public void addDish(Dish dish, int quantity) {
         for (int i=0; i < quantity; i++) {
             getChosenDishes().add(dish);
             dish.getCarts().add(this);
+        }
+    }
+
+    public void updateQuantityInCart(Dish dish, int newQuantity) {
+        int oldQuantity = countServings(dish);
+        if (newQuantity > oldQuantity) {
+            addDish(dish, newQuantity - oldQuantity);
+        } else if (newQuantity < oldQuantity) {
+            removeDishQuantity(dish,oldQuantity-newQuantity);
         }
     }
 }

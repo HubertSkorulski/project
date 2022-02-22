@@ -1,7 +1,6 @@
 package com.finalproject.controller;
 
 import com.finalproject.domain.Menu;
-import com.finalproject.dto.DishDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +15,7 @@ public class MenuController {
     private Menu menu;
 
     @GetMapping
-    public List<DishDto> prepareMenu() {
-        return menu.prepareDishes();
+    public void prepareMenu() {
+        menu.prepareDishes();
     }
 }

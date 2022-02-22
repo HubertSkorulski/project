@@ -30,8 +30,8 @@ public class DishController {
         return dishMapper.mapToDishDto(dish);
     }
 
-    @PostMapping
-    public DishDto createDish(@RequestParam java.lang.String name, @RequestParam Double price, @RequestParam Long groupId) throws GroupNotFoundException {
+    @PostMapping("/{name}/{price}/{groupId}")
+    public DishDto createDish(@PathVariable java.lang.String name, @PathVariable Double price, @PathVariable Long groupId) throws GroupNotFoundException {
         Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
         Dish dish = new Dish(name,price, group);
         dishDbService.save(dish);
@@ -39,17 +39,19 @@ public class DishController {
     }
 
 
-    @PutMapping
-    public DishDto updateDish(@RequestParam Long dishId, @RequestParam java.lang.String name, @RequestParam Double price) throws DishNotFoundException {
+    @PutMapping("/{dishId}/{name}/{price}/{groupId}")
+    public DishDto updateDish(@PathVariable Long dishId, @PathVariable String name, @PathVariable double price, @PathVariable Long groupId) throws DishNotFoundException, GroupNotFoundException {
         Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
+        Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
         dish.setName(name);
         dish.setPrice(price);
+        dish.setGroup(group);
         dishDbService.save(dish);
         return dishMapper.mapToDishDto(dish);
     }
 
-    @DeleteMapping
-    public void deleteDish(@RequestParam Long dishId) throws DishNotFoundException{
+    @DeleteMapping("/{dishId}")
+    public void deleteDish(@PathVariable Long dishId) throws DishNotFoundException{
         Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
         //zabrac z listy w Group
         //zabrać z listy w Carts

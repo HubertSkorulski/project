@@ -1,6 +1,8 @@
 package com.finalproject.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +13,8 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name ="DISHES")
+@Getter
+@Setter
 public class Dish {
 
     @Id
@@ -22,9 +26,9 @@ public class Dish {
     private String name;
 
     @Column(name = "PRICE")
-    private Double price;
+    private double price;
 
-    public Dish(String name, Double price, Group group) {
+    public Dish(String name, double price, Group group) {
         this.name = name;
         this.price = price;
         this.group = group;
@@ -44,38 +48,6 @@ public class Dish {
     )
     private List<Cart> carts = new ArrayList<>();
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public List<Cart> getCarts() {
-        return carts;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
 
     @Override
     public boolean equals(Object o) {

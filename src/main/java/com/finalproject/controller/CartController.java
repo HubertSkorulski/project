@@ -59,11 +59,23 @@ public class CartController {
         Cart cart = cartDbService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         Dish dish = dishDbService.getDishByName(dishName).orElseThrow(DishNotFoundException::new);
 
-        cart.removeDish(dish);
+        cart.removeDishQuantity(dish,cart.countServings(dish));
 
         cartDbService.save(cart);
         dishDbService.save(dish);
     }
+
+    @PutMapping("updateCart/{cartId}/{dishName}/{newQuantity}")
+    public void updateDishServingsInCart(@PathVariable Long cartId, @PathVariable String dishName, @PathVariable int newQuantity) throws CartNotFoundException, DishNotFoundException {
+        Cart cart = cartDbService.getCart(cartId).orElseThrow(CartNotFoundException::new);
+        Dish dish = dishDbService.getDishByName(dishName).orElseThrow(DishNotFoundException::new);
+
+        cart.updateQuantityInCart(dish,newQuantity);
+
+        cartDbService.save(cart);
+        dishDbService.save(dish);
+    }
+
 
     @GetMapping("summary/{cartId}")
     public List<CartRowDto> getCartSummary(@PathVariable Long cartId) throws CartNotFoundException {
