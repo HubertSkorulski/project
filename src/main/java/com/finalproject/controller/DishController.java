@@ -1,11 +1,13 @@
 package com.finalproject.controller;
 
 
+import com.finalproject.domain.Cart;
 import com.finalproject.domain.Dish;
 import com.finalproject.domain.Group;
 import com.finalproject.dto.DishDto;
 import com.finalproject.exception.DishNotFoundException;
 import com.finalproject.exception.GroupNotFoundException;
+import com.finalproject.service.CartDbService;
 import com.finalproject.service.GroupDbService;
 import lombok.AllArgsConstructor;
 import com.finalproject.mapper.DishMapper;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import com.finalproject.service.DishDbService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -23,6 +24,7 @@ public class DishController {
     private DishDbService dishDbService;
     private DishMapper dishMapper;
     private GroupDbService groupDbService;
+    private CartDbService cartDbService;
 
     @GetMapping
     public DishDto getDish(Long dishId) throws DishNotFoundException {
@@ -43,21 +45,19 @@ public class DishController {
     public DishDto updateDish(@PathVariable Long dishId, @PathVariable String name, @PathVariable double price, @PathVariable Long groupId) throws DishNotFoundException, GroupNotFoundException {
         Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
         Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
-        dish.setName(name);
-        dish.setPrice(price);
-        dish.setGroup(group);
+        dish.update(name,price,group);
         dishDbService.save(dish);
         return dishMapper.mapToDishDto(dish);
     }
 
     @DeleteMapping("/{dishId}")
-    public void deleteDish(@PathVariable Long dishId) throws DishNotFoundException{
+    public void deleteDish(@PathVariable Long dishId) throws DishNotFoundException {
         Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
-        //zabrac z listy w Group
-        //zabrać z listy w Carts
-
+        dish.prepareCartsForDishDeletion();
+        for (Cart cart : dish.getCarts()) {
+            cartDbService.save(cart);
+        }
         dishDbService.delete(dish);
-        //i tu tez sprawdzic czy nie powinienem usunac wszystkich cartów z disha i grup
     }
 
     @GetMapping(value = "getDishes")

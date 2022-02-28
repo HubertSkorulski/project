@@ -35,14 +35,11 @@ public class Dish {
 
     }
 
-    @ManyToOne(
-            cascade = {/*CascadeType.PERSIST,*/ CascadeType.REFRESH}
-    )
+    @ManyToOne
     @JoinColumn(name = "GROUP_ID")
     private Group group;
 
     @ManyToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH},
             mappedBy = "chosenDishes",
             fetch = FetchType.EAGER //doczytać
     )
@@ -57,6 +54,24 @@ public class Dish {
         Dish dish = (Dish) o;
 
         return Objects.equals(name, dish.name);
+    }
+
+    public void prepareCartsForDishDeletion() {
+        for (Cart cart : this.getCarts()) {
+            cart.removeAllServingsOfDish(this);
+        }
+    }
+
+    public void update(String name, double price, Group group) {
+        setName(name);
+        setPrice(price);
+        setGroup(group);
+    }
+
+    private void removeDishFromCarts(List<Cart> carts) {
+        for (Cart cart : carts) {
+            cart.removeAllServingsOfDish(this);
+        }
     }
 
 }

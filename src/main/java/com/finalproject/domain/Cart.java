@@ -76,6 +76,12 @@ public class Cart {
         }
     }
 
+    public void removeAllServingsOfDish(Dish dish) {
+        while (getChosenDishes().contains(dish)) {
+            getChosenDishes().remove(dish);
+        }
+    }
+
     public String cartToString() {
         List<CartRow> cartRows = prepareCartDisplay();
         String cartInString = "";
@@ -101,4 +107,6 @@ public class Cart {
             removeDishQuantity(dish,oldQuantity-newQuantity);
         }
     }
+
+
 }

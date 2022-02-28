@@ -1,11 +1,9 @@
 package com.finalproject.domain;
 
+import com.finalproject.dao.CartRepository;
 import com.finalproject.dao.DishRepository;
 import com.finalproject.dao.GroupRepository;
-import com.finalproject.domain.Dish;
-import com.finalproject.domain.Group;
 import com.finalproject.service.DishDbService;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +21,8 @@ public class DishEntityTestSuite {
     private GroupRepository groupRepository;
     @Autowired
     private DishDbService dishDbService;
+    @Autowired
+    private CartRepository cartRepository;
 
     @Test
     public void createDishTest() {
@@ -75,7 +75,7 @@ public class DishEntityTestSuite {
     }
 
     @Test
-    public void deleteDish() {
+    public void deleteDishTest() {
         //Given
         Group group = new Group("Test group");
         Dish dish = new Dish("Test dish", 9.99,group);
@@ -83,19 +83,38 @@ public class DishEntityTestSuite {
         groupRepository.save(group);
         dishRepository.save(dish);
         //When
-        Group groupFromDb = groupRepository.findAll().get(0);
-        groupFromDb.getDishList().remove(0);
-        groupRepository.save(groupFromDb);
-        Dish dishFromDb = dishRepository.findAll().get(0);
-        dishFromDb.setGroup(null);
-        dishRepository.save(dishFromDb);
-        dishRepository.delete(dishRepository.findAll().get(0));
+        dishRepository.delete(dish);
         //Then
         assertEquals(0,dishRepository.findAll().size());
         assertEquals(1,groupRepository.findAll().size());
         //CleanUp
         groupRepository.deleteAll();
     }
+
+    @Test
+    public void deleteDishWithCartTest() {
+        //Given
+        Group group = new Group("Test group");
+        Dish dish = new Dish("Test dish", 9.99,group);
+        Cart cart = new Cart();
+        cart.addDish(dish,3);
+        group.addDishToGroup(dish);
+        groupRepository.save(group);
+        dishRepository.save(dish);
+        cartRepository.save(cart);
+        //When
+        dish.prepareCartsForDishDeletion();
+        cartRepository.save(cart);
+        dishRepository.delete(dish);
+        //Then
+        assertEquals(0,dishRepository.findAll().size());
+        assertEquals(1,groupRepository.findAll().size());
+        assertEquals(0,cart.countServings(dish));
+        //CleanUp
+        groupRepository.deleteAll();
+        cartRepository.deleteAll();
+    }
+
 
     @Test
     public void dishesFromGroupTest() {

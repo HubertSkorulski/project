@@ -188,6 +188,22 @@ public class CartEntityTestSuite {
     }
 
     @Test
+    void removeDishAllServingsTest() {
+        //Given
+        Cart cart = new Cart();
+        Group group = new Group("Test group");
+        Dish dish = new Dish("Test",12.22,group);
+        Dish secondDish = new Dish("Test 2", 11.00,group);
+        cart.addDish(dish,5);
+        cart.addDish(secondDish,3);
+        //When
+        cart.removeAllServingsOfDish(dish);
+        //Then
+        Assertions.assertEquals(0,cart.countServings(dish));
+        Assertions.assertEquals(3,cart.countServings(secondDish));
+    }
+
+    @Test
     void countTotalCost() {
         //Given
         Cart cart = new Cart();

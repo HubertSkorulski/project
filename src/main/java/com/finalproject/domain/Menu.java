@@ -21,8 +21,8 @@ public class Menu {
     private final DishMapper dishMapper;
 
     public void prepareDishes() {
-        Group group = new Group("Test group");
-        Group group2 = new Group("Second test group");
+        Group group = new Group("Pierwsza grupa");
+        Group group2 = new Group("Druga grupa");
         groupDbService.save(group);
         groupDbService.save(group2);
         Group groupFromDb = groupRepository.findAll().get(0);
