@@ -1,14 +1,11 @@
 package com.finalproject.domain;
 
-import com.finalproject.dao.GroupRepository;
-import com.finalproject.dto.DishDto;
-import com.finalproject.mapper.DishMapper;
 import com.finalproject.service.DishDbService;
 import com.finalproject.service.GroupDbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.annotation.PostConstruct;
 
 
 @Service
@@ -17,29 +14,26 @@ public class Menu {
 
     private final GroupDbService groupDbService;
     private final DishDbService dishDbService;
-    private final GroupRepository groupRepository;
-    private final DishMapper dishMapper;
 
+    @PostConstruct
     public void prepareDishes() {
         Group group = new Group("Pierwsza grupa");
         Group group2 = new Group("Druga grupa");
         groupDbService.save(group);
         groupDbService.save(group2);
-        Group groupFromDb = groupRepository.findAll().get(0);
-        Group groupFromDb2 = groupRepository.findAll().get(1);
 
-        Dish dish = new Dish("First Dish", 9.99,groupFromDb);
-        Dish dish2 = new Dish("Second Dish", 11.99, groupFromDb);
-        Dish dish3 = new Dish("Third", 12.99, groupFromDb2);
-        Dish dish4 = new Dish("Fourth", 12.99, groupFromDb);
-        Dish dish5 = new Dish("Fifth", 12.99, groupFromDb2);
-        Dish dish6 = new Dish("Sixth", 12.99, groupFromDb);
-        Dish dish7 = new Dish("Seventh", 12.99, groupFromDb2);
-        Dish dish8 = new Dish("Eighth", 12.99, groupFromDb);
-        Dish dish9 = new Dish("Ninth", 12.99, groupFromDb2);
-        Dish dish10 = new Dish("Tenth", 12.99, groupFromDb);
-        Dish dish11 = new Dish("Eleventh", 12.99, groupFromDb2);
-        Dish dish12 = new Dish("Twelfth", 12.99, groupFromDb);
+        Dish dish = new Dish("First Dish", 9.99,group);
+        Dish dish2 = new Dish("Second Dish", 11.99, group);
+        Dish dish3 = new Dish("Third", 12.99, group2);
+        Dish dish4 = new Dish("Fourth", 12.99, group);
+        Dish dish5 = new Dish("Fifth", 12.99, group2);
+        Dish dish6 = new Dish("Sixth", 12.99, group);
+        Dish dish7 = new Dish("Seventh", 12.99, group);
+        Dish dish8 = new Dish("Eighth", 12.99, group);
+        Dish dish9 = new Dish("Ninth", 12.99, group2);
+        Dish dish10 = new Dish("Tenth", 12.99, group);
+        Dish dish11 = new Dish("Eleventh", 12.99, group2);
+        Dish dish12 = new Dish("Twelfth", 12.99, group);
         group.addDishToGroup(dish);
         group.addDishToGroup(dish2);
         group.addDishToGroup(dish4);
@@ -68,7 +62,7 @@ public class Menu {
         dishDbService.save(dish11);
         dishDbService.save(dish12);
 
-        groupDbService.save(groupFromDb);
-        groupDbService.save(groupFromDb2);
+        groupDbService.save(group);
+        groupDbService.save(group2);
     }
 }
