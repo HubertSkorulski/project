@@ -1,8 +1,7 @@
-Dzień dobry cześć, 
-
-Jest to backendowa część mojej aplikacji. Celem aplikacji jest pełna obsługa zamówień cateringów świątecznych. 
+Backendowa część mojej aplikacji webowej. Celem aplikacji jest pełna obsługa zamówień cateringów świątecznych. 
 W przyszłości planuję rozbudowę aplikacji o moduł do wczytywanie zamówień z pliku csv.
-Póki co aplikacja działa tylko lokalnie. 
+Aplikacja działa tylko lokalnie. 
+Zastosowałem w niej technologie takie jak Spring, Hibernate, Lombok, Mockito, testy JUinit. Aplikacja komunikuje się z frontendem poprzed Rest API. 
 
 Część frontendowa znajduje pod tym linkiem: https://github.com/HubertSkorulski/project-frontend
 
