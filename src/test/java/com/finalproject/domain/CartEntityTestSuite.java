@@ -4,16 +4,12 @@ package com.finalproject.domain;
 import com.finalproject.dao.CartRepository;
 import com.finalproject.dao.DishRepository;
 import com.finalproject.dao.GroupRepository;
-import com.finalproject.domain.Cart;
-import com.finalproject.domain.Dish;
-import com.finalproject.domain.Group;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

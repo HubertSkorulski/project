@@ -2,13 +2,12 @@ package com.finalproject.domain;
 
 import com.finalproject.dao.DishRepository;
 import com.finalproject.dao.GroupRepository;
-import com.finalproject.domain.Dish;
-import com.finalproject.domain.Group;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
 public class GroupEntityTestSuite {
@@ -18,6 +17,7 @@ public class GroupEntityTestSuite {
 
     @Autowired
     private DishRepository dishRepository;
+
 
     @Test
     public void createGroupTest() {
@@ -78,15 +78,8 @@ public class GroupEntityTestSuite {
         //Then
         assertEquals(0,groupRepository.findAll().size());
         assertEquals(1,dishRepository.findAll().size());
-        assertEquals(null,dishRepository.findAll().get(0).getGroup());
+        assertNull(dishRepository.findAll().get(0).getGroup());
         //Cleanup
         dishRepository.deleteAll();
-
-
-
-
-
-
-
     }
 }

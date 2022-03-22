@@ -1,7 +1,6 @@
 package com.finalproject.domain;
 
 import com.finalproject.dao.CustomerRepository;
-import com.finalproject.domain.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +12,7 @@ public class CustomerEntityTestSuite {
 
     @Autowired
     private CustomerRepository customerRepository;
+
 
     @Test
     public void createCustomerTest() {

@@ -5,6 +5,7 @@ import com.finalproject.dao.GroupRepository;
 import com.finalproject.domain.Dish;
 import com.finalproject.domain.Menu;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +30,7 @@ public class MenuTestSuite {
 
 
     @Test
-    public void prepareMenuTest() {
+    void prepareMenuTest() {
         //Given
         //When
         menu.prepareDishes();

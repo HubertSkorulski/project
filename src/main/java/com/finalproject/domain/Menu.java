@@ -15,8 +15,9 @@ public class Menu {
     private final GroupDbService groupDbService;
     private final DishDbService dishDbService;
 
-    @PostConstruct
+    //@PostConstruct
     public void prepareDishes() {
+
         Group group = new Group("Pierwsza grupa");
         Group group2 = new Group("Druga grupa");
         groupDbService.save(group);
