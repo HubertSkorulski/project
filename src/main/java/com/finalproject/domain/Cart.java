@@ -5,9 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Entity
@@ -55,13 +54,7 @@ public class Cart {
     }
 
     public List<Dish> findDistinctDishes() {
-        List<Dish> distinctDishes = new ArrayList<>();
-        for(Dish dish : getChosenDishes()) {
-            if (!distinctDishes.contains(dish)) {
-                distinctDishes.add(dish);
-            }
-        }
-        return distinctDishes;
+        return getChosenDishes().stream().distinct().collect(Collectors.toList());
     }
 
     public double totalCost() {
