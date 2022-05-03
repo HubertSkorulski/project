@@ -56,6 +56,7 @@ public class Dish {
         return Objects.equals(name, dish.name);
     }
 
+
     public void prepareCartsForDishDeletion() {
         for (Cart cart : this.getCarts()) {
             cart.removeAllServingsOfDish(this);
@@ -73,5 +74,4 @@ public class Dish {
             cart.removeAllServingsOfDish(this);
         }
     }
-
 }
