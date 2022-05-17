@@ -26,14 +26,14 @@ public class DishController {
     private GroupDbService groupDbService;
     private CartDbService cartDbService;
 
-    @GetMapping
-    public DishDto getDish(Long dishId) throws DishNotFoundException {
+    @GetMapping("/{dishId}")
+    public DishDto getDish(@PathVariable Long dishId) throws DishNotFoundException {
         Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
         return dishMapper.mapToDishDto(dish);
     }
 
     @PostMapping("/{name}/{price}/{groupId}")
-    public DishDto createDish(@PathVariable java.lang.String name, @PathVariable Double price, @PathVariable Long groupId) throws GroupNotFoundException {
+    public DishDto createDish(@PathVariable String name, @PathVariable Double price, @PathVariable Long groupId) throws GroupNotFoundException {
         Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
         Dish dish = new Dish(name,price, group);
         dishDbService.save(dish);
