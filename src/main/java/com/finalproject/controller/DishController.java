@@ -4,6 +4,7 @@ package com.finalproject.controller;
 import com.finalproject.domain.Cart;
 import com.finalproject.domain.Dish;
 import com.finalproject.domain.Group;
+import com.finalproject.domain.Menu;
 import com.finalproject.dto.DishDto;
 import com.finalproject.exception.DishNotFoundException;
 import com.finalproject.exception.GroupNotFoundException;
@@ -11,20 +12,22 @@ import com.finalproject.service.CartDbService;
 import com.finalproject.service.GroupDbService;
 import lombok.AllArgsConstructor;
 import com.finalproject.mapper.DishMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.finalproject.service.DishDbService;
 
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("v1/dish")
 public class DishController {
 
-    private DishDbService dishDbService;
-    private DishMapper dishMapper;
-    private GroupDbService groupDbService;
-    private CartDbService cartDbService;
+    private final DishDbService dishDbService;
+    private final DishMapper dishMapper;
+    private final GroupDbService groupDbService;
+    private final CartDbService cartDbService;
+    private final Menu menu;
 
     @GetMapping("/{dishId}")
     public DishDto getDish(@PathVariable Long dishId) throws DishNotFoundException {
@@ -70,6 +73,11 @@ public class DishController {
     public List<DishDto> getDishesWithGroup(@PathVariable Long groupId) {
         List<Dish> dishesFromGroup = dishDbService.getDishesFromGroup(groupId);
         return dishMapper.mapToDishDtoList(dishesFromGroup);
+    }
+
+    @PostMapping(value = "prepareMenu")
+    public void prepareMenu() {
+        menu.prepareDishes();
     }
 
 }
