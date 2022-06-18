@@ -1,0 +1,264 @@
+[33mcommit e583b6dd3dabd8ba8b5b9e68e47413617cf0f83a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Sat Jun 18 18:37:55 2022 +0200
+
+    Another revert test
+
+[33mcommit 36e2555bd8d938b1034779342500a61d090e7ab1[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Sat Jun 18 18:34:05 2022 +0200
+
+    Where is my redundant test?
+
+[33mcommit 50d3867b87e84775eeae13296967dee4c6b05584[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Sat Jun 18 18:23:13 2022 +0200
+
+    Revert testing
+
+[33mcommit ecd30e977f90889a7b49bf5a478d9663f7d72c54[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Wed May 18 20:46:52 2022 +0200
+
+    Added endopoint for  preparing Menu
+
+[33mcommit 0447f86cc3994c1cb7845af7ab7e5b106f186015[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Wed May 18 20:09:37 2022 +0200
+
+    test
+
+[33mcommit e299484f27e76ecee7d82e109903e51bf90d7d83[m
+Author: HubertSkorulski <hubertskorulski@gmail.com>
+Date:   Tue May 17 16:21:15 2022 +0200
+
+    Small bugfixing
+
+[33mcommit 0802bfa4985c7737775cca87e7d8a47774be1d49[m
+Merge: 0d80894 e2aa459
+Author: HubertSkorulski <85187710+HubertSkorulski@users.noreply.github.com>
+Date:   Tue May 17 16:14:02 2022 +0200
+
+    Merge pull request #2 from HubertSkorulski/properties
+    
+    Cleaning
+
+[33mcommit e2aa4591b1de936213c7ead8806829a14c6dfe4b[m[33m ([m[1;31morigin/properties[m[33m)[m
+Author: HubertSkorulski <hubertskorulski@gmail.com>
+Date:   Tue May 17 16:11:47 2022 +0200
+
+    Cleaning
+
+[33mcommit 0d80894b1e351cdf704c6ccd75f726ca973a735f[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue May 3 17:18:56 2022 +0200
+
+    Changes:
+
+[33mcommit 44c9f82c1405c941cc8e31a599c7d5a2f205c750[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Wed Mar 23 09:44:04 2022 +0100
+
+    Method optimalisation
+
+[33mcommit 1b71fd3b7d07f2d078163edcaa0fedc7bdf15fe0[m
+Merge: af5518f df902dd
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Mar 22 22:13:55 2022 +0100
+
+    Merge branch 'main' of https://github.com/huubsoon/project
+
+[33mcommit af5518fb7c318933666a4fcf67772c7e6bb3a18e[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Mar 22 22:10:00 2022 +0100
+
+    Bug fixed
+
+[33mcommit df902ddccc8a1127ca365786971673ff7799149d[m
+Author: HubertSkorulski <85187710+HubertSkorulski@users.noreply.github.com>
+Date:   Tue Mar 22 18:19:29 2022 +0100
+
+    Update README.md
+
+[33mcommit 51cbda280e52c3f8bf229f3356a3cf840276befe[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Fri Mar 11 22:08:24 2022 +0100
+
+    Refactored menu creation
+
+[33mcommit fa3dad63f1cb2eb70c309a9c3d8ee87bb5d61d03[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Mon Feb 28 14:42:49 2022 +0100
+
+    Delete dish funcionality
+
+[33mcommit c2becea08624e8a5fdd91fb7a978c5b0db9de7de[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 22 12:02:31 2022 +0100
+
+    Added dishes module
+
+[33mcommit 661ab2d552d5a0d4c2fbf8828ee73bdfc7af2bca[m
+Merge: cd0ce52 5be7eff
+Author: HubertSkorulski <85187710+HubertSkorulski@users.noreply.github.com>
+Date:   Sat Feb 19 12:32:24 2022 +0100
+
+    Merge pull request #1 from HubertSkorulski/newTests
+    
+    Some tests
+
+[33mcommit 5be7eff23e7557bef0edce684bcd292239771d4f[m[33m ([m[1;31morigin/newTests[m[33m)[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Sat Feb 19 12:31:36 2022 +0100
+
+    Some tests
+
+[33mcommit cd0ce52eaa13d74c22f2b85a483124173474b6ba[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Fri Feb 18 12:20:16 2022 +0100
+
+    Solved test failiture issue
+
+[33mcommit d79f731944fe22dab60813655fb2be2d8d8ee7aa[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Fri Feb 18 11:41:23 2022 +0100
+
+    Removing redundant class
+
+[33mcommit 06864bd2db1ad69255fd437e3e0e1588cc12f537[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Wed Feb 16 14:14:58 2022 +0100
+
+    Edited readme
+
+[33mcommit 33547d626395c5d98c383d431343f3275c46bf64[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Wed Feb 16 13:35:21 2022 +0100
+
+    Updated readme
+
+[33mcommit e067298fe780e5ee0a9ac2b7cdc91d53c44828cb[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 15 14:31:11 2022 +0100
+
+    Base funcionality
+
+[33mcommit 196ac0cc057b90453c4c9031573afcc7a3e20270[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 22:18:20 2022 +0100
+
+    sd
+
+[33mcommit a260a652e4ec6088abff923274f3fa5d4299d3a2[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 22:13:02 2022 +0100
+
+    sd
+
+[33mcommit a714b05148a69eb66d0a1b1b65fa525d4b81190b[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 22:03:49 2022 +0100
+
+    sd
+
+[33mcommit 4fb0762d43fc09a0ea8f023016511c6b7574e06e[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 21:57:03 2022 +0100
+
+    sd
+
+[33mcommit 52e7458720254a56f6272f6a67c30a29a769c719[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 21:37:14 2022 +0100
+
+    sd
+
+[33mcommit 8557db6fb4c12f790bd13585d1d0b62cc4377a15[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 21:30:08 2022 +0100
+
+    sd
+
+[33mcommit 1feac2bd14636c3252a4ab57997b1bc6072e8299[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 21:02:52 2022 +0100
+
+    sd
+
+[33mcommit fa8db86a8aea5e2ef39919c1bfcc31a74de77023[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 20:48:57 2022 +0100
+
+    sd
+
+[33mcommit af7e6ddaca34b087b3e3fe6de436cc64e87d31fe[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 20:42:27 2022 +0100
+
+    sd
+
+[33mcommit 91f78174e94821cd979f6ccc7a2f762e3d999d43[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 16:35:37 2022 +0100
+
+    sd
+
+[33mcommit 2540d7ba21285acaa84044b704173de3a6a7a729[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 16:31:05 2022 +0100
+
+     sd
+
+[33mcommit c211fd44a263743c7944fdf9f3171951aa919865[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 16:27:15 2022 +0100
+
+    sd
+
+[33mcommit 63facf82895570ed04c6769319f84f135064c353[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 16:22:23 2022 +0100
+
+    sd
+
+[33mcommit ec289e7bcbee2877a4911da455d3dc019b36ea12[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 16:11:51 2022 +0100
+
+    jar
+
+[33mcommit e999c632a6ffe6752471e1aecd3e7beb0d13d761[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 16:10:28 2022 +0100
+
+    sd
+
+[33mcommit d3d086390add77c2670b12d5442dc66af9cfca0f[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Tue Feb 1 15:53:14 2022 +0100
+
+    First heroku commit
+
+[33mcommit c674c9b40aebd2d22529abebde554419612cfc3b[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Thu Jan 27 18:28:33 2022 +0100
+
+    last changes
+
+[33mcommit c12ef1c110e7a0ef98285fc8e4e381be1447cb28[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Thu Jan 27 17:24:32 2022 +0100
+
+    poprawki
+
+[33mcommit 5c1ba931aed31c2527a4d9b92ad9acdefe193ce5[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Thu Jan 27 17:16:34 2022 +0100
+
+    Done
+
+[33mcommit a727f160fa7ea2adfc55ff9f6ffcde01a3e014f5[m
+Author: huubsoon <hubertskorulski@gmail.com>
+Date:   Thu Jan 27 16:01:18 2022 +0100
+
+    commit
