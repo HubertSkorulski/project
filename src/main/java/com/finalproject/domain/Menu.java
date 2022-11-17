@@ -34,7 +34,7 @@ public class Menu {
         Dish dish9 = new Dish("Ninth", 12.99, group2);
         Dish dish10 = new Dish("Tenth", 12.99, group);
         Dish dish11 = new Dish("Eleventh", 12.99, group2);
-        Dish dish12 = new Dish("Twelfth", 12.99, group);
+        Dish dish12 = new Dish("Twelfth", 142.99, group);
         group.addDishToGroup(dish);
         group.addDishToGroup(dish2);
         group.addDishToGroup(dish4);
