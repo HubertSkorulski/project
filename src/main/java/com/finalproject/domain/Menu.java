@@ -15,7 +15,6 @@ public class Menu {
     private final GroupDbService groupDbService;
     private final DishDbService dishDbService;
 
-
     public void prepareDishes() {
 
         Group group = new Group("Pierwsza grupa");

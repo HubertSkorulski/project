@@ -12,21 +12,22 @@ import com.finalproject.service.CartDbService;
 import com.finalproject.service.GroupDbService;
 import lombok.AllArgsConstructor;
 import com.finalproject.mapper.DishMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.finalproject.service.DishDbService;
 
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("v1/dish")
 public class DishController {
 
-    private DishDbService dishDbService;
-    private DishMapper dishMapper;
-    private GroupDbService groupDbService;
-    private CartDbService cartDbService;
-    private Menu menu;
+    private final DishDbService dishDbService;
+    private final DishMapper dishMapper;
+    private final GroupDbService groupDbService;
+    private final CartDbService cartDbService;
+    private final Menu menu;
 
     @GetMapping("/{dishId}")
     public DishDto getDish(@PathVariable Long dishId) throws DishNotFoundException {
