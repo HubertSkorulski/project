@@ -1,4 +1,4 @@
 FROM openjdk:11.0.2-jdk
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+ADD build/libs/final-project-0.0.1-SNAPSHOT.jar .
+EXPOSE 8000
+CMD java -jar final-project-0.0.1-SNAPSHOT.jar
