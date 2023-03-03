@@ -10,5 +10,5 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class CartDto {
-    private Long id;
+    private final Long id;
 }

@@ -11,6 +11,7 @@ import com.finalproject.mapper.CartMapper;
 import com.finalproject.mapper.CartRowMapper;
 import com.finalproject.mapper.DishMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import com.finalproject.service.CartDbService;
 import com.finalproject.service.DishDbService;
@@ -18,9 +19,11 @@ import com.finalproject.service.DishDbService;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/cart")
+@CrossOrigin
 public class CartController {
 
     private final CartMapper cartMapper;
@@ -33,6 +36,7 @@ public class CartController {
     public CartDto createCart() {
         Cart cart = new Cart();
         cartDbService.save(cart);
+        log.info("new cart" + cart.getId());
         return cartMapper.mapToCartDto(cart);
     }
 
@@ -43,15 +47,16 @@ public class CartController {
     }
 
     @PutMapping("addProduct/{dishName}/{cartId}/{quantity}")
-    public CartDto addProductToCart(@PathVariable String dishName, @PathVariable Long cartId, @PathVariable int quantity) throws CartNotFoundException, DishNotFoundException {
+    public List<CartRowDto> addProductToCart(@PathVariable String dishName, @PathVariable Long cartId, @PathVariable int quantity) throws CartNotFoundException, DishNotFoundException {
         Cart cart = cartDbService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         Dish dish = dishDbService.getDishByName(dishName).orElseThrow(DishNotFoundException::new);
 
         cart.addDish(dish,quantity);
-
+        log.info("Adding " + dishName + " to " + cart.getId());
         cartDbService.save(cart);
         dishDbService.save(dish);
-        return cartMapper.mapToCartDto(cart);
+
+        return cartRowMapper.mapToCartRowDtoList(cart.prepareCartDisplay());
     }
 
     @PutMapping("removeDish/{cartId}/{dishName}")
@@ -89,22 +94,19 @@ public class CartController {
         return cart.totalCost();
     }
 
-    //GetCarts
     @GetMapping("all")
     public List<CartDto> getAllCarts() {
         List<Cart> carts = cartDbService.getAllCarts();
         return cartMapper.mapToCartDtoList(carts);
     }
 
-    //GetCart
     @GetMapping("/{cartId}")
     public CartDto getCart(@PathVariable Long cartId) throws CartNotFoundException {
         Cart cart = cartDbService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         return cartMapper.mapToCartDto(cart);
     }
 
-    //DeleteCart
-    @DeleteMapping
+    @DeleteMapping("/cartId")
     public void deleteCart(@PathVariable Long cartId) throws Exception {
         cartDbService.delete(cartId);
     }

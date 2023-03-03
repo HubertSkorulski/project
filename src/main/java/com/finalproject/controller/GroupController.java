@@ -16,15 +16,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("v1/group")
+@CrossOrigin
 public class GroupController {
 
     private final GroupDbService groupDbService;
     private final GroupMapper groupMapper;
     private final DishDbService dishDbService;
 
-    @PostMapping
-    public GroupDto createGroup(@RequestParam String groupName) {
-        Group group = new Group(groupName);
+    @PostMapping()
+    public GroupDto createGroup(@RequestBody Group group) {
         groupDbService.save(group);
         return groupMapper.mapToGroupDto(group);
     }

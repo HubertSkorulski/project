@@ -21,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("v1/dish")
+@CrossOrigin
 public class DishController {
 
     private final DishDbService dishDbService;
