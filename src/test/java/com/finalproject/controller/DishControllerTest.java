@@ -1,6 +1,7 @@
 package com.finalproject.controller;
 
 import com.finalproject.dto.DishDto;
+import com.google.gson.Gson;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.mockito.Mockito.doNothing;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
@@ -45,14 +46,18 @@ class DishControllerTest {
     @Test
     void createDishTest() throws Exception {
         //Given
-        when(dishController.createDish("Test",9.99,1L))
+        Gson gson = new Gson();
+        DishDto dishDto = new DishDto(null,"Test",9.99, 1L);
+        when(dishController.createDish(any(DishDto.class)))
                 .thenReturn(new DishDto(1L,"Test",9.99,1L));
-
+        String dishDtoJson = gson.toJson(dishDto);
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post(urlStart + "Test/9.99/1")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .post(urlStart)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(dishDtoJson)
+                        )
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is("Test")));
     }

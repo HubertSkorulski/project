@@ -32,7 +32,6 @@ public class Dish {
         this.name = name;
         this.price = price;
         this.group = group;
-
     }
 
     @ManyToOne

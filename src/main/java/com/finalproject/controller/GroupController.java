@@ -7,12 +7,14 @@ import com.finalproject.exception.GroupNotFoundException;
 import com.finalproject.mapper.GroupMapper;
 import com.finalproject.service.DishDbService;
 import com.finalproject.service.GroupDbService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("v1/group")
@@ -24,8 +26,9 @@ public class GroupController {
     private final DishDbService dishDbService;
 
     @PostMapping()
-    public GroupDto createGroup(@RequestBody Group group) {
+    public GroupDto createGroup(@Valid @RequestBody Group group) {
         groupDbService.save(group);
+        log.info("Added group " + group.getGroupName());
         return groupMapper.mapToGroupDto(group);
     }
 

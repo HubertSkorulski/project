@@ -1,6 +1,7 @@
 package com.finalproject.mapper;
 
 import com.finalproject.domain.Dish;
+import com.finalproject.domain.Group;
 import com.finalproject.dto.DishDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,9 @@ public class DishMapper {
                 dish.getGroup().getId()
         );
         return dishDto;
+    }
+
+    public Dish mapToDish(DishDto dishDto, Group group) {
+        return new Dish(dishDto.getName(),dishDto.getPrice(),group);
     }
 }

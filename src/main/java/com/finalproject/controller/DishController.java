@@ -36,10 +36,10 @@ public class DishController {
         return dishMapper.mapToDishDto(dish);
     }
 
-    @PostMapping("/{name}/{price}/{groupId}")
-    public DishDto createDish(@PathVariable String name, @PathVariable Double price, @PathVariable Long groupId) throws GroupNotFoundException {
-        Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
-        Dish dish = new Dish(name,price, group);
+    @PostMapping("/")
+    public DishDto createDish(@RequestBody DishDto dishDto) throws GroupNotFoundException {
+        Group group = groupDbService.getGroup(dishDto.getGroupId()).orElseThrow(GroupNotFoundException::new);
+        Dish dish = dishMapper.mapToDish(dishDto, group);
         dishDbService.save(dish);
         return dishMapper.mapToDishDto(dish);
     }
