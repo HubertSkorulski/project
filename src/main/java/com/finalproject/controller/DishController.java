@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.finalproject.service.DishDbService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -37,7 +38,7 @@ public class DishController {
     }
 
     @PostMapping("/")
-    public DishDto createDish(@RequestBody DishDto dishDto) throws GroupNotFoundException {
+    public DishDto createDish(@Valid @RequestBody DishDto dishDto) throws GroupNotFoundException {
         Group group = groupDbService.getGroup(dishDto.getGroupId()).orElseThrow(GroupNotFoundException::new);
         Dish dish = dishMapper.mapToDish(dishDto, group);
         dishDbService.save(dish);
@@ -45,16 +46,15 @@ public class DishController {
     }
 
 
-    @PutMapping("/{dishId}/{name}/{price}/{groupId}")
-    public DishDto updateDish(@PathVariable Long dishId, @PathVariable String name, @PathVariable double price, @PathVariable Long groupId) throws DishNotFoundException, GroupNotFoundException {
-        Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
-        Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotFoundException::new);
-        dish.update(name,price,group);
+    @PutMapping("/")
+    public DishDto updateDish(@Valid @RequestBody DishDto dishDto) throws DishNotFoundException, GroupNotFoundException {
+        Group group = groupDbService.getGroup(dishDto.getGroupId()).orElseThrow(GroupNotFoundException::new);
+        Dish dish = dishMapper.mapToDish(dishDto,group);
         dishDbService.save(dish);
         return dishMapper.mapToDishDto(dish);
     }
 
-    @DeleteMapping("/{dishId}")
+    @DeleteMapping("/{dishId}") //TO DO sprawdzić w sumie czy to na pewno tak ma byc tj powiązania w encjach
     public void deleteDish(@PathVariable Long dishId) throws DishNotFoundException {
         Dish dish = dishDbService.getDish(dishId).orElseThrow(DishNotFoundException::new);
         dish.prepareCartsForDishDeletion();
@@ -64,19 +64,19 @@ public class DishController {
         dishDbService.delete(dish);
     }
 
-    @GetMapping(value = "getDishes")
+    @GetMapping(value = "/getDishes")
     public List<DishDto> getDishes() {
         List<Dish> dishes = dishDbService.getAllDishes();
         return dishMapper.mapToDishDtoList(dishes);
     }
 
-    @GetMapping(value = "dishesInGroup/{groupId}")
+    @GetMapping(value = "/dishesInGroup/{groupId}")
     public List<DishDto> getDishesWithGroup(@PathVariable Long groupId) {
         List<Dish> dishesFromGroup = dishDbService.getDishesFromGroup(groupId);
         return dishMapper.mapToDishDtoList(dishesFromGroup);
     }
 
-    @GetMapping(value = "prepareDishes")
+    @GetMapping(value = "/prepareDishes")
     public void prepareDishes () {
         menu.prepareDishes();
     }

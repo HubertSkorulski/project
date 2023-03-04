@@ -32,14 +32,17 @@ class DishControllerTest {
     @Test
     void updateDishTest() throws Exception {
         //Given
-        when(dishController.updateDish(1L,"test",1.22,2L))
+        Gson gson = new Gson();
+        DishDto dishDto = new DishDto(1L,"test",1.22,2L);
+        when(dishController.updateDish(dishDto))
                 .thenReturn(new DishDto(1L,"test",1.22,2L));
-
+        String dishJson = gson.toJson(dishDto);
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .put(urlStart + "1/test/1.22/2")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .put(urlStart)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(dishJson))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
