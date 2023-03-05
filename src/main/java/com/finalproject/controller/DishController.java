@@ -10,7 +10,6 @@ import com.finalproject.exception.DishNotFoundException;
 import com.finalproject.exception.GroupNotFoundException;
 import com.finalproject.service.CartDbService;
 import com.finalproject.service.GroupDbService;
-import lombok.AllArgsConstructor;
 import com.finalproject.mapper.DishMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -47,9 +46,10 @@ public class DishController {
 
 
     @PutMapping("/")
-    public DishDto updateDish(@Valid @RequestBody DishDto dishDto) throws DishNotFoundException, GroupNotFoundException {
+    public DishDto updateDish(@Valid @RequestBody DishDto dishDto) throws GroupNotFoundException, DishNotFoundException {
         Group group = groupDbService.getGroup(dishDto.getGroupId()).orElseThrow(GroupNotFoundException::new);
-        Dish dish = dishMapper.mapToDish(dishDto,group);
+        Dish dish = dishDbService.getDish(dishDto.getId()).orElseThrow(DishNotFoundException::new);
+        dish.update(dishDto.getName(), dishDto.getPrice(), group);
         dishDbService.save(dish);
         return dishMapper.mapToDishDto(dish);
     }
