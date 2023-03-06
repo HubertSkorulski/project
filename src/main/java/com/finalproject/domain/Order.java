@@ -3,6 +3,8 @@ package com.finalproject.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +16,15 @@ import javax.validation.constraints.NotNull;
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDER")
+    @GenericGenerator(
+            name = "SEQ_ORDER",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "1")
+            }
+    )
     @Column(name = "ORDER_ID", unique = true)
     private Long id;
 

@@ -2,6 +2,8 @@ package com.finalproject.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,8 +17,16 @@ import java.util.stream.Collectors;
 public class Cart {
 
     @Id
-    @GeneratedValue
-    @Column(name = "CART_ID", unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CART")
+    @GenericGenerator(
+            name = "SEQ_CART",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "1")
+            }
+    )
+    @Column(name = "CART_ID")
     private Long id;
 
     @ManyToMany(
