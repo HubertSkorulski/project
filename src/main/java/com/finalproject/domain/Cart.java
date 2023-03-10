@@ -24,19 +24,15 @@ public class Cart {
             parameters = {
                     @Parameter(name = "initial_value", value = "1"),
                     @Parameter(name = "increment_size", value = "1")
-            }
-    )
+            })
     @Column(name = "CART_ID")
     private Long id;
 
-    @ManyToMany(
-            fetch = FetchType.EAGER
-    )
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "DISHES_IN_CARTS",
             joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "DISH_ID", referencedColumnName = "DISH_ID")}
-    )
+            inverseJoinColumns = {@JoinColumn(name = "DISH_ID", referencedColumnName = "DISH_ID")})
     private List<Dish> chosenDishes = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.EAGER)
