@@ -65,8 +65,8 @@ public class Cart {
 
     public double totalCost() {
         List<CartRow> cartRows = prepareCartDisplay();
-        return cartRows.stream()
-                .map(CartRow::getPrice)
+        return chosenDishes.stream()
+                .map(Dish::getPrice)
                 .reduce((double) 0,Double::sum);
     }
 
