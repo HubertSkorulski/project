@@ -44,7 +44,7 @@ public class Customer {
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "customer",
-            fetch = FetchType.EAGER //czy na pewno?
+            fetch = FetchType.EAGER
     )
     private List<Order> orders = new ArrayList<>();
 

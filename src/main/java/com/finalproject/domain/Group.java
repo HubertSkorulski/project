@@ -35,8 +35,7 @@ public class Group {
     @OneToMany(
             targetEntity = Dish.class,
             mappedBy = "group",
-            cascade = {/*CascadeType.MERGE,*/ CascadeType.REFRESH},
-            fetch = FetchType.EAGER//czy na pewno?
+            fetch = FetchType.EAGER
     )
     private List<Dish> dishList = new ArrayList<>();
 

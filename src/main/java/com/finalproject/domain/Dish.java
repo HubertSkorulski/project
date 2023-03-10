@@ -50,7 +50,7 @@ public class Dish {
 
     @ManyToMany(
             mappedBy = "chosenDishes",
-            fetch = FetchType.EAGER //doczytać
+            fetch = FetchType.EAGER
     )
     private List<Cart> carts = new ArrayList<>();
 
