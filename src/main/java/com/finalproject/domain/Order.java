@@ -41,11 +41,11 @@ public class Order {
     public Order (Cart cart, Customer customer) {
         this.cart = cart;
         this.customer = customer;
-        this.status = "Open";
+        this.status = OrderStatus.ACTIVE;
     }
 
     @Column(name = "STATUS") //zrobić enumy
-    private String status;
+    private OrderStatus status;
 
     public Long getId() {
         return id;
@@ -59,11 +59,11 @@ public class Order {
         return customer;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status=status;
     }
 }

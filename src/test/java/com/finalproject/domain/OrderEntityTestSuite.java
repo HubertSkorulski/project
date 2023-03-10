@@ -41,7 +41,7 @@ public class OrderEntityTestSuite {
         Order orderFromDb = orderRepository.findAll().get(0);
         assertEquals(1,orderRepository.findAll().size());
         assertEquals("Test name", orderFromDb.getCustomer().getName());
-        assertEquals("Open", orderFromDb.getStatus());
+        assertEquals(OrderStatus.ACTIVE, orderFromDb.getStatus());
 
         //CleanUp
         orderRepository.deleteAll();
@@ -62,11 +62,11 @@ public class OrderEntityTestSuite {
         orderRepository.save(order);
         //When
         Order orderFromDb = orderRepository.findAll().get(0);
-        orderFromDb.setStatus("Paid");
+        orderFromDb.setStatus(OrderStatus.PAID);
         orderRepository.save(orderFromDb);
         //Then
         Order updatedOrder = orderRepository.findAll().get(0);
-        assertEquals("Paid",updatedOrder.getStatus());
+        assertEquals(OrderStatus.PAID,updatedOrder.getStatus());
 
         //CleanUp
         orderRepository.deleteAll();
