@@ -19,4 +19,6 @@ public interface DishRepository extends CrudRepository<Dish,Long> {
     List<Dish> findAll();
 
     Optional<Dish> findByName(String name);
+
+    List<Dish> findByGroup_Id(Long groupId);
 }

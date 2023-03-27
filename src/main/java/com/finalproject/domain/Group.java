@@ -29,7 +29,7 @@ public class Group {
     private Long id;
 
     @NotNull
-    @Column(name = "GROUP_NAME", unique = true)
+    @Column(name = "GROUP_NAME")
     private String groupName;
 
     @OneToMany(

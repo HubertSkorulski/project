@@ -1,7 +1,6 @@
 package com.finalproject.domain;
 
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
@@ -12,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "DISHES_ORDERS")
 public class Order {
 
     @Id

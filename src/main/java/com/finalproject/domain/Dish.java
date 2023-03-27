@@ -7,7 +7,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +31,7 @@ public class Dish {
     @Column(name = "DISH_ID")
     private Long id;
 
-    @Column(name = "DISH_NAME", unique = true)
+    @Column(name = "DISH_NAME")
     private String name;
 
     @Column(name = "PRICE")

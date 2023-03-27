@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -37,9 +36,6 @@ public class DishDbService {
     }
 
     public List<Dish> getDishesFromGroup(Long groupId) {
-        return getAllDishes()
-                .stream()
-                .filter(e -> e.getGroup().getId().equals(groupId))
-                .collect(Collectors.toList());
+        return dishRepository.findByGroup_Id(groupId);
     }
 }

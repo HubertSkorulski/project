@@ -6,7 +6,6 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
@@ -34,15 +33,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
-
-
-
-
-	runtimeOnly ('mysql:mysql-connector-java')
-	//runtimeOnly 'org.postgresql:postgresql'
+	implementation 'mysql:mysql-connector-java:8.0.32'
 
 	implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
-
 	runtimeOnly('com.h2database:h2')
 }
 
