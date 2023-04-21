@@ -2,17 +2,16 @@ package com.finalproject.controller;
 
 
 import com.finalproject.domain.Cart;
-import com.finalproject.domain.Customer;
 import com.finalproject.domain.Order;
+import com.finalproject.domain.RestaurantUser;
 import com.finalproject.dto.OrderDto;
 import com.finalproject.exception.CartNotFoundException;
-import com.finalproject.exception.CustomerNotFoundException;
 import com.finalproject.exception.OrderNotFoundException;
+import com.finalproject.exception.UserNotFoundException;
 import com.finalproject.mapper.OrderMapper;
 import com.finalproject.service.CartDbService;
-import com.finalproject.service.ConfirmationService;
-import com.finalproject.service.CustomerDbService;
 import com.finalproject.service.OrderDbService;
+import com.finalproject.service.UserDbService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,23 +24,22 @@ import java.util.List;
 public class OrderController {
 
     private CartDbService cartDbService;
-    private CustomerDbService customerDbService;
+    private UserDbService userDbService;
     private OrderDbService orderDbService;
     private OrderMapper orderMapper;
-    private ConfirmationService confirmationService;
 
     @PostMapping
-    public OrderDto createOrder(@RequestParam Long cartId, @RequestParam Long customerId) throws CartNotFoundException, CustomerNotFoundException {
+    public OrderDto createOrder(@RequestParam Long cartId, @RequestParam Long customerId) throws CartNotFoundException, UserNotFoundException {
         Cart cart = cartDbService.getCart(cartId).orElseThrow(CartNotFoundException::new);
-        Customer customer = customerDbService.getCustomer(customerId).orElseThrow(CustomerNotFoundException::new);
-        Order order = new Order(cart,customer);
+        RestaurantUser restaurantUser = userDbService.getUser(customerId).orElseThrow(UserNotFoundException::new);
+        Order order = new Order(cart, restaurantUser);
 
         cart.setOrder(order);
-        customer.getOrders().add(order);
+        restaurantUser.getOrders().add(order);
 
         orderDbService.save(order);
         cartDbService.save(cart);
-        customerDbService.save(customer);
+        userDbService.save(restaurantUser);
 
         return orderMapper.mapToOrderDto(order);
     }
@@ -68,18 +66,18 @@ public class OrderController {
 
     //DeleteOrder
     @DeleteMapping
-    public void deleteOrder(@RequestParam Long orderId) throws OrderNotFoundException, CartNotFoundException, CustomerNotFoundException {
+    public void deleteOrder(@RequestParam Long orderId) throws OrderNotFoundException, CartNotFoundException, UserNotFoundException {
         Order order = orderDbService.getOrder(orderId).orElseThrow(OrderNotFoundException::new);
-        Long customerId = order.getCustomer().getId();
+        Long customerId = order.getRestaurantUser().getId();
         Long cartId = order.getCart().getId();
 
-        Customer customer = customerDbService.getCustomer(customerId).orElseThrow(CustomerNotFoundException::new);
+        RestaurantUser restaurantUser = userDbService.getUser(customerId).orElseThrow(UserNotFoundException::new);
         Cart cart = cartDbService.getCart(cartId).orElseThrow(CartNotFoundException::new);
 
-        customer.getOrders().remove(order);
+        restaurantUser.getOrders().remove(order);
         cart.setOrder(null);
 
-        customerDbService.save(customer);
+        userDbService.save(restaurantUser);
         cartDbService.save(cart);
 
         orderDbService.delete(order);

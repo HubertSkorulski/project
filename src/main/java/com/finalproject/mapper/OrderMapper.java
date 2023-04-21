@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 public class OrderMapper {
 
     public OrderDto mapToOrderDto(Order order) {
-        OrderDto orderDto = new OrderDto(
+        return new OrderDto(
                 order.getId(),
                 order.getCart().getId(),
-                order.getCustomer().getId(),
+                order.getRestaurantUser().getId(),
                 order.getStatus().getValue()
         );
-        return orderDto;
     }
 }
