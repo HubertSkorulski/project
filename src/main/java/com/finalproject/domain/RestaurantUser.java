@@ -8,52 +8,49 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @NoArgsConstructor
 @Entity
-@Table(name = "CUSTOMERS")
+@Table(name = "RESTAURANT_USERS")
 @Getter
 @Setter
-public class Customer {
+public class RestaurantUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CUSTOMER")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USER")
     @GenericGenerator(
-            name = "SEQ_CUSTOMER",
+            name = "SEQ_USER",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
                     @Parameter(name = "initial_value", value = "1"),
                     @Parameter(name = "increment_size", value = "1")
             }
     )
-    @Column(name = "CUSTOMER_ID")
+    @Column(name = "USER_ID")
     private Long id;
 
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "SURNAME")
-    private String surname;
-
     @Column(name = "EMAIL")
-    private String emailAddress;
+    private String username;
+
+    @Column(name = "USER_PASSWORD")
+    private String password;
+    @Column(name = "ROLE")
+    private String role;
+
+
 
     @OneToMany(
             targetEntity = Order.class,
-            mappedBy = "customer",
+            mappedBy = "restaurantUser",
             fetch = FetchType.EAGER
     )
     private List<Order> orders = new ArrayList<>();
 
-    public Customer(String name, String surname, String emailAddress) {
-        this.name = name;
-        this.surname = surname;
-        this.emailAddress = emailAddress;
+    public RestaurantUser(String username, String role) {
+        this.username = username;
+        this.role = role;
     }
-
-
 
 }

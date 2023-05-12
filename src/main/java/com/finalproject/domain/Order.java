@@ -34,12 +34,12 @@ public class Order {
 
     @ManyToOne
     @NotNull
-    @JoinColumn(name = "CUSTOMER_ID")
-    private Customer customer;
+    @JoinColumn(name = "USER_ID")
+    private RestaurantUser restaurantUser;
 
-    public Order (Cart cart, Customer customer) {
+    public Order (Cart cart, RestaurantUser restaurantUser) {
         this.cart = cart;
-        this.customer = customer;
+        this.restaurantUser = restaurantUser;
         this.status = OrderStatus.ACTIVE;
     }
 
@@ -54,15 +54,12 @@ public class Order {
         return cart;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public RestaurantUser getRestaurantUser() {
+        return restaurantUser;
     }
 
     public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(OrderStatus status) {
-        this.status=status;
-    }
 }
